@@ -42,9 +42,10 @@ def get_cointergrated_coeff(y:pd.Series,x:pd.Series):
 
     Return: alpha
     """
+    x = sm.add_constant(x)
     regress = sm.OLS(y,x)
     regress = regress.fit()
-    alpha = -regress.params.iloc[0]
+    alpha = -regress.params.iloc[-1]
     return alpha
 
 
@@ -173,4 +174,4 @@ def trade_strategy(S1, S2, spread, window1, window2,sell_threshold,buy_threshold
             countS1 = 0
             countS2 = 0
     # close position money
-    return money + (countS1 * S1.iloc[i+1] + S2.iloc[i+1] * countS2)
+    return money 

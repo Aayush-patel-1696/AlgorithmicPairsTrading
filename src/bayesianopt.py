@@ -61,4 +61,4 @@ class bayesianOpt:
                 countS1 = 0
                 countS2 = 0
         # close position money
-        return money + (countS1 * S1.iloc[i+1] + S2.iloc[i+1] * countS2)
+        return money
