@@ -13,7 +13,7 @@ This project implements an optimized algorithmic trading strategy based on **pai
 - **ARIMA Forecasting**: Using ARIMA models to predict stock prices.
 - **Bayesian Optimization**: Optimizing trading parameters for better performance.
 - **Backtesting**: Testing the strategy on historical data and comparing it to a benchmark.
-- **Risk Meaasure**: Calculation of Risk Measure to constrol risk in trading strategy. Now Mean Semideviation Risk measure is supported
+- **Risk Measure**: Calculation of Risk Measure to constrol risk in trading strategy. Now Mean Semideviation Risk measure is supported
 
 ## Files in This Repository:
 - **experiment.ipynb**: Core experiments including data collection, cointegration testing, model training, optimization, and backtesting.
