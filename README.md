@@ -2,7 +2,7 @@
 
 ---
 
-# Risk Averse Pairs Trading Strategy using Bayesian Optimization
+# Risk Optimized Pairs Trading Strategy using Bayesian Optimization
 
 ## Project Overview
 
