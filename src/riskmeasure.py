@@ -2,6 +2,7 @@
 
 from abc import ABC, abstractmethod
 import numpy as np
+import pandas as pd
 
 
 
@@ -10,7 +11,6 @@ class RiskMeasure(ABC):
     @abstractmethod
     def calculate(self, money_arr):
         pass
-
 
 
 class CumulativeReturn(RiskMeasure):
@@ -22,11 +22,3 @@ class CumulativeReturn(RiskMeasure):
         return money_arr[-1]
     
 
-class MeanSemiDeviation(RiskMeasure):
-
-    def __init__(self,chi):
-        self.chi = chi
-
-    def calculate(self, money_arr):
-        mean_semideviation = np.mean(money_arr) - self.chi*(np.mean(np.abs(np.mean(money_arr)-money_arr)))
-        return mean_semideviation
