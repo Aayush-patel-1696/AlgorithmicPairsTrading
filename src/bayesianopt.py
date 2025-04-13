@@ -53,7 +53,7 @@ class bayesianOpt:
 
         # Initialize trading simulation variables
         money_arr = []
-        money = 0
+        money = 1
         countS1 = 0
         countS2 = 0
 
