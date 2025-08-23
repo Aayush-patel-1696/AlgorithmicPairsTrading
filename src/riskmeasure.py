@@ -29,3 +29,19 @@ class ExponationalUtility(RiskMeasure):
 
     def calculate(self, money_arr):
         return -1*np.mean(np.exp(-self.risk_aversion *np.array(money_arr)))
+    
+class MeanSemiDeviation(RiskMeasure):
+
+    def __init__(self,chi=0.3):
+        self.chi = chi
+
+    def calculate(self, money_arr):
+        """
+        Calcilate the mean semi deviation of a money array"
+        rho = E[loss] + chi*E[[E[loss]-loss]_+]
+        """
+        money_arr = np.array(-1*money_arr)
+
+        mean = np.mean(money_arr)
+        semi_deviation = np.mean(np.maximum(mean - money_arr, 0))
+        return mean + self.chi*semi_deviation

@@ -1,6 +1,6 @@
 # Parameter Optimization
 import numpy as np
-from .riskmeasure import RiskMeasure
+from .utils import trade
 from mango.tuner import Tuner
 
 class bayesianOpt:
@@ -23,7 +23,7 @@ class bayesianOpt:
                 sell_threshold = params["sell_threshold"]
                 buy_threshold = params["buy_threshold"]
                 clear_threshold = params["clear_threshold"]
-                money = bayesianOpt.trade(S1,S2,spread,beta,window1,window2,sell_threshold,buy_threshold,clear_threshold)
+                money = trade(S1,S2,spread,beta,window1,window2,sell_threshold,buy_threshold,clear_threshold)
                 obj = self.risk_measure.calculate(money)
                 objs.append(obj)
             return objs

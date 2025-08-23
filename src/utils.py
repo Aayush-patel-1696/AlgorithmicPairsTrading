@@ -90,3 +90,40 @@ def calculate_drawdown(money_arr):
     drawdowns = (money_arr - cumulative_max) / cumulative_max
    
     return drawdowns
+
+
+def trade(S1, S2, spread, beta, window1, window2, sell_threshold, buy_threshold, clear_threshold):
+
+        if (window1 == 0) or (window2 == 0):
+            return 0
+
+        ma1 = spread.rolling(window=window1).mean()
+        ma2 = spread.rolling(window=window2).mean()
+        std = spread.rolling(window=window2).std()
+        zscore = (ma1 - ma2) / std
+
+        money_arr = []
+        money = 1
+        countS1 = 0
+        countS2 = 0
+
+        for i in range(len(spread) - 1):
+
+            if zscore.iloc[i] > sell_threshold:  # Sell
+                money += S1.iloc[i] - S2.iloc[i] * beta
+                countS1 -= 1
+                countS2 += beta
+
+            elif zscore.iloc[i] < buy_threshold:  # Buy
+                money -= S1.iloc[i] - S2.iloc[i] * beta
+                countS1 += 1
+                countS2 -= beta
+
+            elif abs(zscore.iloc[i]) < clear_threshold:  # Clear
+                money += countS1 * S1.iloc[i] + countS2 * S2.iloc[i]
+                countS1 = 0
+                countS2 = 0
+
+            money_arr.append(money)
+
+        return money_arr
